@@ -1,16 +1,16 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
-#include <boost/multiprecision/cpp_int.hpp>
 #include <cctype>
 #include <sstream>
+#include <charconv>
 
-std::string fizzbuzz(boost::multiprecision::cpp_int n) {
+std::string fizzbuzz(long long n) {
     std::ostringstream oss;
     if (n == 0) {
         return "\n";
     }
-    for (boost::multiprecision::cpp_int i = 1; i <= n; i++) {
+    for (long long i = 1; i <= n; i++) {
         if (i % 3 == 0 && i % 5 == 0) {
             oss << "FizzBuzz\n";
         } else if (i % 3 == 0) {
@@ -48,7 +48,8 @@ int main() {
         })) {
             std::cout << "Input must be a positive integer!" << std::endl;
         } else {
-            boost::multiprecision::cpp_int num(line);
+            long long num;
+            std::from_chars(line.data(), line.data() + line.size(), num);
             std::cout << fizzbuzz(num);
         } 
     }
