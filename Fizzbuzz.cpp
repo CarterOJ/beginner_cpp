@@ -34,22 +34,22 @@ void trim(std::string& s) {
 
 int main() {
     while (true) {
-        std::string line;
+        std::string iters;
         std::cout << "Please enter the iteration amount to fizzbuzz. Type 'Q' to quit: ";
-        std::getline(std::cin, line);
-        trim(line);
-        if (line.size() == 1 && (line[0] == 'q' || line[0] == 'Q')) {
+        std::getline(std::cin, iters);
+        trim(iters);
+        if (iters.size() == 1 && (iters[0] == 'q' || iters[0] == 'Q')) {
             std::cout << "Exiting fizzbuzz" << std::endl;
             break;
-        } else if (line.find(' ') != std::string::npos || line.find('\t') != std::string::npos) {
+        } else if (iters.find(' ') != std::string::npos || iters.find('\t') != std::string::npos) {
             std::cout << "Can only accept one argument!" << std::endl;
-        } else if (!std::all_of(line.begin(), line.end(), [](unsigned char c) {
+        } else if (!std::all_of(iters.begin(), iters.end(), [](unsigned char c) {
             return std::isdigit(c);
         })) {
             std::cout << "Input must be a positive integer!" << std::endl;
         } else {
             long long num;
-            std::from_chars(line.data(), line.data() + line.size(), num);
+            std::from_chars(iters.data(), iters.data() + iters.size(), num);
             std::cout << fizzbuzz(num);
         } 
     }
